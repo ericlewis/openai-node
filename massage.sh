@@ -1,10 +1,9 @@
 #!/bin/bash
 
-npm install change-package-name --save-dev
-npx change-package-name @ericlewis/openai
+npm install change-package-name typescript@4 --save-dev
 npm uninstall axios
 npm install redaxios
-npm install typescript@4 --save-dev
+npx change-package-name @ericlewis/openai
 
 sed -i'' '' "s/import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';/type AxiosPromise<T = any> = Promise<{data: T}>;\ntype AxiosInstance = any;\ntype AxiosRequestConfig = any;\nimport globalAxios from 'redaxios';/g" *.ts
 sed -i'' '' "s/import type { AxiosInstance, AxiosResponse } from 'axios';/type AxiosInstance = any;/g" *.ts
